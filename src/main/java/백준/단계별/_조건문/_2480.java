@@ -7,14 +7,6 @@ import java.util.StringTokenizer;
 
 public class _2480 {
 
-    static int compare(int a,int b,int c){
-        int max = a;
-        if(b > max) max = b;
-        if(c > max) max = c;
-
-        return max;
-    }
-
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,18 +17,21 @@ public class _2480 {
         int num_3 = Integer.parseInt(st.nextToken());
 
 
-        if ((num_1 == num_2) && (num_2 == num_3)) {
+        // 입력 받은 3가지 값이 모두 같은 경우.
+        if (num_1 == num_2 && num_2 == num_3) {
             System.out.println(10000 + num_1 * 1000);
         }
-        // 1-2 같은 경우, 1-3 같은 경우, 2-3 같은경우
-        else if ((num_1 == num_2) && (num_1 != num_3)) {
-            System.out.println(1000 + num_1 * 3);
-        } else if ((num_1 == num_3) && (num_1 != num_2)) {
-            System.out.println(1000 + num_1 * 3);
-        } else if ((num_2 == num_3) && (num_1 != num_2)) {
-            System.out.println(1000 + num_2 * 3);
-        } else {
-            System.out.println(compare(num_1, num_2, num_3));
+        // 입력 받은 3가지 값이 모두 다른 경우.
+        else if(num_1 != num_2 && num_2 != num_3 && num_1 != num_3) {
+            int max = num_1;
+            if (max < num_2) max = num_2;
+            if (max < num_3) max = num_3;
+            System.out.println(max * 100);
+        }else if(num_1 == num_2 || num_1 == num_3){
+            System.out.println(1000+num_1*100);
+        }else{
+            System.out.println(1000+num_2*100);
         }
+
     }
 }
